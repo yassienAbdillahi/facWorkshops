@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge 4 | CSS Layout Workshop</title>
+    <link rel="stylesheet" href="challenge-4.css" />
+    <style>
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+      }
+      .justify-end {
+        justify-content: flex-end;
+      }
+      .justify-space-between {
+        justify-content: space-between;
+      }
+      .center {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 40rem;
+      }
+      .stack-sm > * + * {
+        margin-top: 0.5rem;
+      }
+      .stack-md > * + * {
+        margin-top: 1rem;
+      }
+      .stack-lg > * + * {
+        margin-top: 2rem;
+      }
+      .stack-xl > * + * {
+        margin-top: 4rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        gap: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="row justify-space-between">
+        <a class="logo" href="/" aria-label="Home">Facstagram</a>
+        <input type="search" aria-label="Search" placeholder="Search" />
+        <nav>
+          <ul class="row justify-end">
+            <li><a class="button" href="#login">Log In</a></li>
+            <li><a href="#signup">Sign Up</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main  class="stack-xl">
+      <section class="row center">
+        <div class="row">
+          <img
+            class="avatar"
+            width="150"
+            height="150"
+            src="https://source.unsplash.com/featured/150x150?dog"
+            alt="We rate dogs' profile pic"
+          />
+          <div class="stack-md">
+            <div class="row">
+              <h1>weratedogs</h1>
+              <button class="button">Follow</button>
+            </div>
+            <ul class="row">
+              <li><strong>2,163</strong> posts</li>
+              <li><strong>1.9m</strong> followers</li>
+              <li><strong>21</strong> following</li>
+            </ul>
+            <p>Your Only Source For Professional Dog Ratings</p>
+            <p>DM or tag us to submit your pups</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="stack-md">
+        <nav class="tabs center">
+          <ul class="row justify-space-between">
+            <li><a href="#posts">Posts</a></li>
+            <li><a href="#reels">Reels</a></li>
+            <li><a href="#igtv">IGTV</a></li>
+            <li><a href="#tagged">Tagged</a></li>
+          </ul>
+        </nav>
+        <ul class="grid">
+          <li>
+            <img
+              width="500"
+              height="500"
+              src="https://source.unsplash.com/featured/500x500?dog"
+              alt=""
+            />
+          </li>
+          <li>
+            <img
+              width="500"
+              height="500"
+              src="https://source.unsplash.com/featured/500x501?dog"
+              alt=""
+            />
+          </li>
+          <li>
+            <img
+              width="500"
+              height="500"
+              src="https://source.unsplash.com/featured/500x502?dog"
+              alt=""
+            />
+          </li>
+          <li>
+            <img
+              width="500"
+              height="500"
+              src="https://source.unsplash.com/featured/500x503?dog"
+              alt=""
+            />
+          </li>
+          <li>
+            <img
+              width="500"
+              height="500"
+              src="https://source.unsplash.com/featured/500x504?dog"
+              alt=""
+            />
+          </li>
+          <li>
+            <img
+              width="500"
+              height="500"
+              src="https://source.unsplash.com/featured/500x505?dog"
+              alt=""
+            />
+          </li>
+          <li>
+            <img
+              width="500"
+              height="500"
+              src="https://source.unsplash.com/featured/500x506?dog"
+              alt=""
+            />
+          </li>
+          <li>
+            <img
+              width="500"
+              height="500"
+              src="https://source.unsplash.com/featured/500x507?dog"
+              alt=""
+            />
+          </li>
+          <li>
+            <img
+              width="500"
+              height="500"
+              src="https://source.unsplash.com/featured/500x508?dog"
+              alt=""
+            />
+          </li>
+          <li>
+            <img
+              width="500"
+              height="500"
+              src="https://source.unsplash.com/featured/500x509?dog"
+              alt=""
+            />
+          </li>
+          <li>
+            <img
+              width="500"
+              height="500"
+              src="https://source.unsplash.com/featured/500x510?dog"
+              alt=""
+            />
+          </li>
+          <li>
+            <img
+              width="500"
+              height="500"
+              src="https://source.unsplash.com/featured/500x511?dog"
+              alt=""
+            />
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
