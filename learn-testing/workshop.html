@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Testing</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+
+    <script>
+      // the function we're testing
+      function square(x) {
+        return x * x; //or change the square function itself to see the test fail
+      }
+
+
+      /*
+      question: is it CRITICAL that we use strict equality (i.e === or !== instead of just
+      == or != ? If so, why?)
+      */
+
+      //task1
+      function testAttempt1(x) {
+        const result = square(x);
+        const expected = x * x; //change the expected value to x + x to see the test fail
+        if (result !== expected) {console.error(`Test fails, expected square(${x}) to equal ${x*x}, but got ${result} instead. The square function does not work`);}
+        else {console.info(`Test passes, expected square(${x}) to equal ${x*x}, and got ${result}. The square function works.`);}
+      }
+      testAttempt1(4);
+
+
+      //task2
+      function equal(a, b, message) {
+        if(a === b) {//ameded for task 5 to add a default message and an optional message in the argument
+          const defaultMessage = `expected ${b} and received ${a}`;
+          console.info(`Success: ${message || defaultMessage}`);
+        }
+        else {console.error(`Failure: ${message || defaultMessage}`);}
+      }
+
+      function testAttempt2(x) {
+        const result = square(x);
+        const expected = x * x;
+        equal(result, expected);
+      }
+
+      testAttempt2(4);
+
+      testAttempt2(3.5);
+
+      //task3
+      function notEqual(a, b) {
+        if(a !== b) {console.info(`Success, expected ${b} to be different to ${a} and they are.`);}
+        else {console.error(`Failure, expected ${b} to be different to ${a} but THEY ARE THE SAME.`);}
+      }
+
+      function testAttempt3(x) {
+        const result = square(x);
+        const notExpected = 10;
+        notEqual(result, notExpected);
+      }
+
+      testAttempt3(3);
+
+
+      //task4
+      function test(name, testFunction) {
+        console.group(name);
+        testFunction();
+        console.groupEnd();
+      }
+
+      test("Correctly squares integers", ()=>{
+        testAttempt2(6);
+      });
+
+      test("Correctly squares negative numbers", ()=>{
+        testAttempt2(-7);
+      });
+
+      test("Correctly squares negatve decimal numbers", ()=>{
+        const result = square(-2.5);
+        const expected = -2.5 * -2.5;
+        equal(result, expected, "This test passed. The square function works for negatvie decimals");
+      });
+
+
+
+
+    </script>
+  </body>
+</html>
