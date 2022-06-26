@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge | Functions and asynchronous JavaScript</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+    <script>
+  
+  //mini-challenge 1
+    
+  function logger(argument1) {
+    console.log(argument1);
+  }
+
+  function returnsOne() {
+    return 1; 
+  }
+
+  logger(returnsOne);
+
+  const arrowVersionOfReturnsOne = () => {return 1;};
+  logger(arrowVersionOfReturnsOne);
+
+  //mini-challenge 2
+  logger(returnsOne());
+  logger(arrowVersionOfReturnsOne());
+
+  function typeLogger(argument1) {
+    console.log(typeof argument1);
+  }
+
+  typeLogger(returnsOne);
+  typeLogger(arrowVersionOfReturnsOne);
+
+  typeLogger(returnsOne());
+  typeLogger(arrowVersionOfReturnsOne());
+
+
+  //mini-challenge 3
+
+  /* this is the original event listener before any changes
+  window.addEventListener("click", (event) => {
+    console.log(event.clientX, event.clientY);
+  });
+  */
+  
+  const clickFn = (event) => {
+    console.log(event.clientX, event.clientY);
+  };
+  window.addEventListener("click", clickFn);
+
+
+  //mini-challenge 4
+  function one(aFunct) {
+    aFunct(1);
+  }
+  
+  one(logger);
+
+
+  //mini-challenge 5
+  function asyncDouble(num, callback) {
+    window.setTimeout(() => {callback(num * 2)}, 1000);
+  }
+
+  asyncDouble(10, logger);
+  
+  //or
+
+  asyncDouble(10, (arg) => {console.log(arg)} );
+
+
+  //actual workshop now
+  function light (string, callback) {
+    window.setTimeout( () => {
+      console.log(string);
+      callback();
+    }, 1000);
+  }
+
+  light("green", () => {
+    light("amber", () => {
+      light("red", () => {
+        light("amber", () => {
+          light("green", () => {
+            light("finished", ()=>{});//note the function that is called back by light in this line is empty
+          });
+        });
+      });
+    });
+  });
+    </script>
+  </body>
+</html>
