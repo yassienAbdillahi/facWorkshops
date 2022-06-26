@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Fetch & Promises</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+    <script>
+    
+    //challenge 1
+    const pokemonPromiseThingy = fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
+    console.log(pokemonPromiseThingy);
+
+
+    //challenge 2
+    pokemonPromiseThingy
+    .then(
+      (resultOfPromise) => {console.log(resultOfPromise);}
+    );
+
+
+    //challenge 3
+    pokemonPromiseThingy
+    .then(
+      (response) => {return response.json()} //dont forget to include the return in this line
+    ) //also note that only the last .then or .catch or .finally should have a semicolon after it
+    .then(
+      (body) => {console.log(body);}
+    );
+
+
+    //challenge 4
+    const deliberatelyWrongPokemonPromiseThingy = fetch("");
+
+    deliberatelyWrongPokemonPromiseThingy
+    .then(
+      (response) => {return response.json()}
+    )
+    .then(
+      (body) => {console.log(body);}
+    )
+    .catch(
+      (error) => {console.log("url in the fetch is wrong or missing");}
+    );
+
+
+    //actual workshop now
+
+    //task1
+    const getUser = (username) => {
+      return fetch("https://api.github.com/users/" + username)
+      .then(
+          (response) => {return response.json()}
+        );
+    };
+
+    getUser("oliverjam")
+    .then(
+      (user) => {console.log(user);}
+    )
+    .catch(
+      (error) => {console.log(error);}
+    );
+    
+    
+    //task2
+    const getRepos = (user) => {
+      return fetch(user.repos_url)
+      .then(
+          (response) => response.json()
+        );
+    };
+    
+    getUser("oliverjam")
+      .then(getRepos)
+      .then(
+        (reposArray) => {console.log(reposArray);}
+      )
+
+    </script>
+  </body>
+</html>
