@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real world fetch</title>
+  </head>
+  <body>
+    <header>
+      <h1>Fetch and forms</h1>
+    </header>
+
+    <main>
+      <!-- challenge 4 (temporarily commented out so I can do the actual workshop)
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <button type="submit">Send the form!</button>
+      </form>
+      
+      -->
+
+      <form>
+        <label for="">Search for any Pokemon here</label>
+        <input type="search" id="pokeSearch" placeholder="Pikachu">
+
+        <button type="submit">Look it up!</button>
+      </form>
+
+      <section id="searchResults">
+        <p id="pokemonNameResult"></p>
+        <img id="pokemonSpriteResult" alt="Searched pokemon's sprite" src="">
+      </section>
+
+    </main>
+
+    <footer></footer>
+
+
+
+
+
+
+
+    <script>
+      //challenge 1
+      const oli404 = fetch("https://echo.oliverjam.workers.dev/status/404");
+
+      oli404
+      /*
+      note normally after this we would pasrse the response into json eg
+
+      .then(
+        (response) => {return response.json()} 
+      ) 
+      but here we can't because oli404 doesn't actualy return a proper promise object
+      it returns an undefined thing (because the url takes you to a 404 error) hence if you
+      try to parse this into json you get the following message:
+
+      "unexpected token n in json at position 0"
+
+      therefore just skip to the normal second step and log the response without parsing it first
+      */
+      .then(
+        (response) => {console.log(response);}
+      )
+      .catch(
+        (error) => {console.log(error);}
+      );
+
+
+      //challenge 2
+      oli404
+      .then(
+        (response) => {
+          if (response.ok == true) {console.log(response);}
+          else {console.log(`Error, response status is ${response.status}`);}
+        }
+      )
+      .catch(
+        (error) => {console.log(error);}
+      );
+
+
+
+      //challenge 3
+      const sendToOli = {
+        red: "cyan",
+        green: "magenta",
+        blue: "yellow"
+      };
+
+      let stringifiedObjectToBeSent = JSON.stringify(sendToOli);
+
+      const oliSubmit = fetch("https://echo.oliverjam.workers.dev/json", {
+          method: "POST",
+          headers: {"content-type": "application/json"},
+          body: stringifiedObjectToBeSent
+        }
+      );
+
+      oliSubmit
+      .then(
+        (response) => {
+          if (response.ok == false) {console.log(`Error, response status is ${response.status}`);}
+          else {return response.json();}
+        }
+      )
+      .then(
+        (something) => {console.log(something);}
+      )
+      .catch(
+        (error) => {console.log(error);}
+      );
+
+
+      //challenge 4
+      /*just commenting this out for now so I do challenge 5 with the same form
+
+      const myForm = document.querySelector("form");
+
+      myForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          let nameValue = document.querySelector("#name").value;
+          let emailValue = document.querySelector("#email").value;
+          let formObject = {
+            name: nameValue,
+            email: emailValue
+          };
+          let stringifiedFormToBeSent = JSON.stringify(formObject);
+
+          const oliSubmit2 = fetch("https://echo.oliverjam.workers.dev/json", {
+              method: "POST",
+              headers: {"content-type": "application/json"},
+              body: stringifiedFormToBeSent
+            }
+          );
+
+          oliSubmit2
+          .then(
+            (response) => {
+              if (response.ok == false) {console.log(`Error, response status is ${response.status}`);}
+              else {return response.json();}
+            }
+          )
+         .then(
+           (something) => {console.log(something);}
+         )
+         .catch(
+           (error) => {console.log(error);}
+         );
+        }
+      )
+*/
+
+      //challenge 5
+      /*just commenting this out for now so I do challenge 5 with the same form
+      const myForm = document.querySelector("form");
+      
+      myForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(myForm);
+          const data = Object.fromEntries(formData);
+          let stringifiedFormToBeSent = JSON.stringify(data);
+
+          const oliSubmit3 = fetch("https://echo.oliverjam.workers.dev/json", {
+              method: "POST",
+              headers: {"content-type": "application/json"},
+              body: stringifiedFormToBeSent
+            }
+          );
+
+          oliSubmit3
+          .then(
+            (response) => {
+              if (response.ok == false) {console.log(`Error, response status is ${response.status}`);}
+              else {return response.json();}
+            }
+          )
+         .then(
+           (something) => {console.log(something);}
+         )
+         .catch(
+           (error) => {console.log(error);}
+         );
+        }
+      );
+*/
+
+      //actual workshop now
+      const myForm = document.querySelector("form");
+
+      myForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          let searchedPokemon = document.querySelector("#pokeSearch").value;
+          let formObject = {
+            "pokemon Searched": searchedPokemon,
+          };
+
+          let stringifiedFormToBeSent = JSON.stringify(formObject);
+
+          const oliSubmitPokemonSearchWorkshop = fetch("https://echo.oliverjam.workers.dev/json", {
+              method: "POST",
+              headers: {"content-type": "application/json"},
+              body: stringifiedFormToBeSent
+            }
+          );
+
+          let searchedPokemonURL = `https://pokeapi.co/api/v2/pokemon/${searchedPokemon}`;
+          const getSearchedPokemon = fetch(searchedPokemonURL);
+
+          let displayedPokemonName = document.querySelector("#pokemonNameResult");
+          let displayedPokemonSprite = document.querySelector("#pokemonSpriteResult");
+
+
+
+          oliSubmitPokemonSearchWorkshop
+          .then(
+            (response) => {
+              if (response.ok == false) {console.log(`Error, response status is ${response.status}`);}
+              else {
+                //return response.json();
+                getSearchedPokemon
+                .then(
+                  (response) => {return response.json()} 
+                )
+                .then(
+                  (body) => {
+                    console.log(body);
+                    displayedPokemonName.innerHTML = `${body.name}`;
+                    displayedPokemonSprite.src = `${body.sprites.front_default}`;
+                  }
+                )
+              }
+            }
+          )
+          /*
+         .then(
+           (something) => {console.log(something);}
+         )
+         */
+         .catch(
+           (error) => {console.log(error);}
+         );
+        }
+      );
+
+
+    </script>
+  </body>
+</html>
