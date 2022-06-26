@@ -3,25 +3,25 @@ A repository to house my attempts at the various fac workshops and challenges.
 
 
 ## Markup 
-- [ ] Git workflow workshop
-- [ ] CSS Layout workshop
-- [ ] Semantic HTML workshop
-- [ ] Accessibility workshop
-- [ ] HTML Forms workshop
-- [ ] Project: agency website 
+- [x] Git workflow workshop
+- [x] CSS Layout workshop
+- [x] Semantic HTML workshop
+- [x] Accessibility workshop
+- [x] HTML Forms workshop
+- [x] Project: agency website 
 
 ## Http
-- [ ] Asynchronous JS workshop
-- [ ] Promises & fetch workshop
-- [ ] Real-world fetch workshop
-- [ ] Promise practice workshop
-- [ ] Project: an app that queries at least two APIs and uses the results to update the DOM
+- [x] Asynchronous JS workshop
+- [x] Promises & fetch workshop
+- [x] Real-world fetch workshop
+- [x] Promise practice workshop
+- [x] Project: an app that queries at least two APIs and uses the results to update the DOM
 
 ## Testing
-- [ ] Build a testing library
-- [ ] Unit testing workshop
-- [ ] Integration testing workshop
-- [ ] TDD workshop
+- [x] Build a testing library
+- [x] Unit testing workshop
+- [x] Integration testing workshop
+- [x] TDD workshop
 - [ ] Project: a to-do list tracker that allows users to create, complete and delete tasks from a list
 
 ## Projects
