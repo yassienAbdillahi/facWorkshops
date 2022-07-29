@@ -22,11 +22,11 @@ A repository to house my attempts at the various fac workshops and challenges.
 - [x] Unit testing workshop
 - [x] Integration testing workshop
 - [x] TDD workshop
-- [ ] Project: a to-do list tracker that allows users to create, complete and delete tasks from a list
+- [x] Project: a to-do list tracker that allows users to create, complete and delete tasks from a list
 
 ## Projects
 Build (at least) one of the following :
-- [ ] Pomodoro timer
+- [x] Pomodoro timer
 - [ ] Canvas painting
 - [ ] GitHub profile analyser
 - [ ] Snake game
